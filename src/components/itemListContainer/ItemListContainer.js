@@ -5,12 +5,13 @@ import './itemListContainer.css';
 
 import { itemList } from "./itemList";
 
-const ItemListContainer = () => {
+const ItemListContainer = (props) => {
 
     //const prueba = itemList.filter((itemList)=>itemList.group=="1");
     
     return (
-
+    <div>
+        <div className='greeting'>{props.greeting} </div>
     <div className="itemList">
         {itemList.map((itemList) => (
                 
@@ -24,6 +25,7 @@ const ItemListContainer = () => {
                 
     
     ))}
+    </div>
     </div>
     );
 };

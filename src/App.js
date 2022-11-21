@@ -11,7 +11,7 @@ function App() {
         <NavBar/>
       </div>
       <div>
-        <ItemListContainer/>
+        <ItemListContainer greeting="Bienvenidos a Se picó !"/>
       </div>
     </div>
 

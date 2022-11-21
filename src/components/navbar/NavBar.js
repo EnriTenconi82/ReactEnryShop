@@ -12,7 +12,7 @@ const NavBar = () => {
         <h1> Se picó</h1>
         {NavBarButtons.map((NavBarButtons) => (
         <Button>
-            <p>{NavBarButtons.title}</p>
+            {NavBarButtons.title}
         </Button>
         ))}
         

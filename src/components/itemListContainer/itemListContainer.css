@@ -7,3 +7,8 @@
     justify-content: space-around;
   }
   
+  .greeting{
+    font-weight: bolder;
+    font-size: 3rem;
+    color: rgb(163, 185, 222);
+  }

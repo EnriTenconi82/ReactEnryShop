@@ -1,0 +1,13 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: gainsboro;
+}
+
+h1{
+    font-size: 2rem;
+    padding: 0 1rem 0 1rem;
+    color:gray;
+    font-weight: bolder;
+}

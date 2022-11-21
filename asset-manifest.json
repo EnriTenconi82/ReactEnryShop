@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactEnryShop/static/css/main.0ca971f0.css",
-    "main.js": "/ReactEnryShop/static/js/main.6ba7ccba.js",
+    "main.css": "/ReactEnryShop/static/css/main.9096e9d2.css",
+    "main.js": "/ReactEnryShop/static/js/main.5bb8dcce.js",
     "static/js/787.68978874.chunk.js": "/ReactEnryShop/static/js/787.68978874.chunk.js",
     "index.html": "/ReactEnryShop/index.html",
-    "main.0ca971f0.css.map": "/ReactEnryShop/static/css/main.0ca971f0.css.map",
-    "main.6ba7ccba.js.map": "/ReactEnryShop/static/js/main.6ba7ccba.js.map",
+    "main.9096e9d2.css.map": "/ReactEnryShop/static/css/main.9096e9d2.css.map",
+    "main.5bb8dcce.js.map": "/ReactEnryShop/static/js/main.5bb8dcce.js.map",
     "787.68978874.chunk.js.map": "/ReactEnryShop/static/js/787.68978874.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0ca971f0.css",
-    "static/js/main.6ba7ccba.js"
+    "static/css/main.9096e9d2.css",
+    "static/js/main.5bb8dcce.js"
   ]
 }

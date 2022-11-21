@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ReactEnryShop/static/css/main.0ca971f0.css",
+    "main.js": "/ReactEnryShop/static/js/main.6ba7ccba.js",
+    "static/js/787.68978874.chunk.js": "/ReactEnryShop/static/js/787.68978874.chunk.js",
+    "index.html": "/ReactEnryShop/index.html",
+    "main.0ca971f0.css.map": "/ReactEnryShop/static/css/main.0ca971f0.css.map",
+    "main.6ba7ccba.js.map": "/ReactEnryShop/static/js/main.6ba7ccba.js.map",
+    "787.68978874.chunk.js.map": "/ReactEnryShop/static/js/787.68978874.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ca971f0.css",
+    "static/js/main.6ba7ccba.js"
+  ]
+}

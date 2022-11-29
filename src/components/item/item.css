@@ -3,15 +3,6 @@
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 1rem;
-}
-
-p {
-    width: 40px;
-    display: inline-block;
-}
-
-p img{
-    object-fit: contain;
-    width: 90%;
+    justify-content: center;   
 }
 

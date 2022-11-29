@@ -1,0 +1,18 @@
+p{
+    width: 40px;
+    display: inline-block;
+}
+
+p img{
+    object-fit: contain;
+    width: 90%;
+    cursor: pointer;
+
+}
+
+.addtoCart{
+    background-color: black;
+    padding: 2px;   
+    color: antiquewhite;
+    cursor: pointer;
+}

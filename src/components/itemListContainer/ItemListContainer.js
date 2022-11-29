@@ -4,29 +4,44 @@ import Item from '../item/Item';
 import './itemListContainer.css';
 
 import { itemList } from "./itemList";
+/* 
+const commentVis= (comm)=>{
+    console.log({comm})
+}
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res=>res.json())
+    .then(commentVis)
+
+ */
+let itemListP
+const promesa = new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(itemList)
+    }, 2000);
+})
+
+promesa.then((res) => {
+    itemListP=res
+    console.log(itemListP)
+});
+
+
 
 const ItemListContainer = (props) => {
+    
+    const itemsFiltr = itemList.filter((itemListP)=>itemListP.group==props.id);
 
-    //const prueba = itemList.filter((itemList)=>itemList.group=="1");
-    
     return (
-    <div>
-        <div className='greeting'>{props.greeting} </div>
-    <div className="itemList">
-        {itemList.map((itemList) => (
-                
-                <Item
-                    image={itemList.image}
-                    name={itemList.name}
-                    description={itemList.descpriction}
-                    price={itemList.price}
-                    quantity="0"
-                />
-                
-    
-    ))}
-    </div>
-    </div>
+        <div>
+            <div className='greeting'>{props.greeting} </div>
+            
+            <div className="itemList">
+                {itemsFiltr.map((item) => (
+                    <Item item={item} key={item.id}/>
+                ))}
+            </div>
+        </div>
     );
 };
 

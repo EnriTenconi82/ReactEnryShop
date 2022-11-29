@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState,createContext } from 'react';
 import './App.css';
-
 import NavBar from './components/navbar/NavBar';
 import ItemListContainer from './components/itemListContainer/ItemListContainer';
-function App() {
+
+export const idMenuContext = createContext();
+
+
+  const App =() => {
+
+  const [idmen, setIdmen] = useState(0) 
+
+  const menuChange = (idNew)=>{
+    setIdmen(idNew)
+  }
+
+  
+  
   return (
-    
     <div className="App">
-      <div>
+      <idMenuContext.Provider value={{ idmen, menuChange} }>
+
         <NavBar/>
-      </div>
-      <div>
         <ItemListContainer greeting="Bienvenidos a Se picó !"/>
-      </div>
+        <ItemListContainer id={idmen}/>
+        
+      </idMenuContext.Provider>
+
+
+
+
     </div>
 
     
@@ -21,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

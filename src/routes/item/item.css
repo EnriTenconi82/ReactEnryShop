@@ -1,8 +1,5 @@
-.addItem{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    justify-content: center;   
+.item {
+  color:black;
+  text-decoration: none;
 }
 

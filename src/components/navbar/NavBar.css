@@ -5,3 +5,8 @@
 .chart img{
     height: 100%;
 }
+
+.menuLink{
+    text-decoration: none;
+    color: hsl(240, 35%, 56%);
+}

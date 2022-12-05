@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Card from "../../components/card/Card";
 import Avatar from "../../components/Avatar/Avatar";
 import ItemCount from "../../components/ItemCount/ItemCount";
-
+import './itemDetailsContainer.css'
 import { itemList } from "../itemListContainer/itemList";
 
 
@@ -18,7 +18,7 @@ const  ItemDetailsContainer= () =>{
         <div className="item">
             <div>{itemFiltr[0].name}</div>
             <Avatar src={itemFiltr[0].image}/>
-            <div>{itemFiltr[0].description}</div>
+            <div className="descr">{itemFiltr[0].descpriction}</div>
             <div>Precio: {itemFiltr[0].price}</div>
             <div>Stock: {itemFiltr[0].stock}</div>
             <div className="addItem">

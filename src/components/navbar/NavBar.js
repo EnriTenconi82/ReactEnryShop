@@ -19,7 +19,7 @@ const NavBar = () => {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
       <Navbar.Brand>
-          <Link to="/">Se picó</Link>
+          <Link className='menuLink'  to="/">Se picó</Link>
       </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -28,10 +28,10 @@ const NavBar = () => {
             
             <NavDropdown title="Picadas" bg="dark" id="basic-nav-dropdown">
               <NavDropdown.Item>
-                  <Link to='category/Picadas4/'>Para 4</Link>
+                  <Link className='menuLink' to='category/Picadas4/'>Para 4</Link>
                 </NavDropdown.Item>
               <NavDropdown.Item> 
-                         <Link to='category/Picadas6'>Para 6</Link>
+                <Link className='menuLink'  to='category/Picadas6'>Para 6</Link>
                 
               </NavDropdown.Item>
             </NavDropdown>
@@ -40,19 +40,20 @@ const NavBar = () => {
             <NavDropdown title="Bebidas"   id="basic-nav-dropdown">
                   <NavDropdown.Item>
                     
-                    <Link to='category/Cervezas'>Cervezas</Link>
+                    <Link className='menuLink' to='category/Cervezas'>Cervezas</Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to='category/Gaseosas'>Gaseosas</Link>  
+                    <Link className='menuLink' to='category/Gaseosas'>Gaseosas</Link>  
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Link to='category/Tragos'>Tragos</Link>
+                    <Link className='menuLink' to='category/Tragos'>Tragos</Link>
                   </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link>
+                <Link className='menuLink' to='category/Combos'>Combos</Link>
+            </Nav.Link>
             
-            <Link to='category/Combos'>Combos</Link>
-            
-              </Nav>
+          </Nav>
         </Navbar.Collapse>
       </Container>
       <div className="chart">

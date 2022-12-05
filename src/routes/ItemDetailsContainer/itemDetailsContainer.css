@@ -1,0 +1,14 @@
+.addItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    justify-content: center;   
+}
+
+.item div{
+    padding-top: 5px;
+}
+.descr{
+    font-style: oblique;
+}

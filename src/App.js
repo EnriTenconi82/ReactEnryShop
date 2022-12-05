@@ -1,30 +1,39 @@
-import React, { useState,createContext } from 'react';
+import React, {createContext } from 'react';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import './App.css';
 import NavBar from './components/navbar/NavBar';
-import ItemListContainer from './components/itemListContainer/ItemListContainer';
+import ItemListContainer from './routes/itemListContainer/ItemListContainer';
+import ItemDetailsContainer from './routes/ItemDetailsContainer/ItemDetailsContainer';
 
-export const idMenuContext = createContext();
-
+export const chartContext=createContext()
 
   const App =() => {
 
-  const [idmen, setIdmen] = useState(0) 
+//  const [idmen, setIdmen] = useState(0) 
 
+  //const [chartQ,setChartQ]=useState(0)
+/* 
   const menuChange = (idNew)=>{
     setIdmen(idNew)
   }
 
-  
+  const chartQChange = (newCQ)=>{
+    setChartQ(newCQ)
+  }
+
+  let chart=[] 
+   */
   
   return (
     <div className="App">
-      <idMenuContext.Provider value={{ idmen, menuChange} }>
-
+      <BrowserRouter>
         <NavBar/>
-        <ItemListContainer greeting="Bienvenidos a Se picó !"/>
-        <ItemListContainer id={idmen}/>
-        
-      </idMenuContext.Provider>
+        <Routes>
+            <Route exact path="/" element={<ItemListContainer greeting="Bienvenidos a Se picó !"/>} />
+            <Route exact path="/category/:categoryId" element={<ItemListContainer/>} />
+            <Route exact path="/items/:id" element={<ItemDetailsContainer/>} /> 
+        </Routes>
+      </BrowserRouter>
 
 
 

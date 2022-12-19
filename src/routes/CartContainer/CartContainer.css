@@ -1,0 +1,32 @@
+.button{
+    background-color: black;
+    padding: 3px;   
+    color: antiquewhite;
+    cursor: pointer;
+    text-decoration: none;
+    
+    
+}
+
+.item div{
+    padding-top: 5px;
+}
+
+.itemList {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
+  }
+  
+  .menu{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .menu div{
+    width: 90wv;
+  }

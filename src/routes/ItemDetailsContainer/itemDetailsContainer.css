@@ -1,9 +1,11 @@
-.addItem{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    justify-content: center;   
+.endBuy{
+    background-color: black;
+    padding: 3px;   
+    color: antiquewhite;
+    cursor: pointer;
+    text-decoration: none;
+    
+    
 }
 
 .item div{

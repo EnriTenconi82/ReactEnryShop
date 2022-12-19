@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
-
+import CartWidget from '../cartWidget/CartWidget';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NavBar.css'
+import { cartContext } from '../../contexts/cartContext';
 
-// import { idMenuContext } from '../../App';
-// import { chartContext } from '../../App';
 
 
 const NavBar = () => {
+  
+  const {cartQ} =useContext(cartContext)
+
+  
 
   return (
+
     <div>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -56,10 +60,11 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      <div className="chart">
-            <img src={"https://png.pngtree.com/png-vector/20191124/ourmid/pngtree-shopping-cart-icon-simple-png-image_2028930.jpg"} alt={"chart"} />
-          (5)        
-        </div>
+    
+      <Link className='menuLink' to='cart'>
+            <CartWidget qOfCart={cartQ()} />
+      </Link>
+
     </Navbar>
     </div>
   );

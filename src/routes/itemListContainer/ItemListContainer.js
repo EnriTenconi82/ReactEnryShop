@@ -4,20 +4,9 @@ import Item from '../item/Item';
 import './itemListContainer.css';
 
 import { itemList } from "./itemList";
-/* 
-const commentVis= (comm)=>{
-    console.log({comm})
-}
-
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(res=>res.json())
-    .then(commentVis)
-
- */
-
-
 
 const ItemListContainer = (props) => {
+
 
 const [itemListP,setItemListP]=useState([])
     //okCarga renderiza al tener datos
@@ -30,16 +19,14 @@ useEffect(() => {
     const promesa = new Promise((resolve) => {
         setTimeout(() => {
             resolve(itemList)
-        }, 2000);
+        }, 1000);
     })
     promesa.then((res) => {
         setItemListP(res)
-        console.log(itemListP)
         setOkCarga(true)
-        console.log(okCarga)
     });
 
-}, []);
+},[]);
 
     
 const { categoryId } = useParams();
@@ -53,10 +40,8 @@ if (okCarga){
             <div className='greeting'>{props.greeting} </div>
 
             <div className="itemList">
-
-
+            
                 {itemsFiltr.map((item) => (
-                    
                     <Item item={item} key={item.id}/>
                 ))}
             </div>

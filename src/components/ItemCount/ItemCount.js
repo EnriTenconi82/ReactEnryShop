@@ -9,11 +9,11 @@ const ItemCount = ({onAddHandler,item}) => {
   
 
   const buttonClickHandlerS = () => {
-    (contador<item.stock) ? setContador(contador + 1) : console.log ("err")
+    if(contador<item.stock)  setContador(contador + 1)
   };
 
   const buttonClickHandlerL = () => {
-    (contador>0) ? setContador(contador - 1) : console.log ("err")
+    if (contador>0) setContador(contador - 1) 
   };
   
   //llamo codigo de ItemDetailsCont

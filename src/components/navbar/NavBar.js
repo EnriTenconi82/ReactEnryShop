@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React,{useContext} from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,16 +7,15 @@ import { Link } from 'react-router-dom';
 import CartWidget from '../cartWidget/CartWidget';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NavBar.css'
-import { cartContext } from '../../contexts/cartContext';
 
+import { cartContext } from '../../contexts/cartContext';
 
 
 const NavBar = () => {
   
-  const {cartQ} =useContext(cartContext)
+  const {calcItemsQty}= useContext(cartContext)
 
-  
-
+ 
   return (
 
     <div>
@@ -60,12 +59,20 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    
-      <Link className='menuLink' to='cart'>
-            <CartWidget qOfCart={cartQ()} />
-      </Link>
 
+
+      {calcItemsQty()>0 &&
+      <>
+      
+      <Link className='menuLink' to='cart'>
+          <CartWidget cartQ={calcItemsQty()} />
+      </Link>
+      </>
+    } 
+       
     </Navbar>
+
+
     </div>
   );
 }

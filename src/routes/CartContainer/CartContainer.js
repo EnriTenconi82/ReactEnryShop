@@ -1,19 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import "./CartContainer.css"
+import "./CartContainer.css";
+import FormContainer from "../../components/FormContainer/FormContainer"
 import {cartContext} from "../../contexts/cartContext";
 import Card from "../../components/card/Card";
 
 const CartConteiner= ()=>{
     //cargo datos del servido
-
+    
    
-    const { cart, removeItem, clear,cartTotalValue} =useContext(cartContext)
+    const { cart, deleteItem, removeList,cartTotalValue} =useContext(cartContext)
     if (cart.length>0)
     {
         return(
             <div>
-                <div className="button" onClick={clear}>Vaciar Carrito</div>
+                
+                <div className="button" onClick={removeList}>Vaciar Carrito</div>
                     <div>Compra total:{cartTotalValue()}</div>
 
                 <div className="itemList" >
@@ -24,11 +26,13 @@ const CartConteiner= ()=>{
                                 <div>Nombre:{item.name}</div> 
                                 <div>Precio:{item.price}</div> 
                                 <div>Cantidad:{item.qta}</div> 
-                                <div className="button" onClick={() => removeItem(item.id)}>Eliminar</div>
+                                <div className="button" onClick={() => deleteItem(item.id)}>Eliminar</div>
                             </div>                    
                         </Card>        
                         ))}
-                </div> 
+                <FormContainer/>
+                </div>
+
         </div>
 
 );

@@ -13,8 +13,6 @@ const ItemDetail= ({item, action}) =>{
         <div className="descr">{item.descpriction}</div>
         <div>Precio: {item.price}</div>
         <div>Stock: {item.stock}</div>
-
-
         <div> 
             {action}
         </div>

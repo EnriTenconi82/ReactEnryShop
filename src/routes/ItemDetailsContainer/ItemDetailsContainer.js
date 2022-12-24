@@ -16,53 +16,46 @@ const  ItemDetailsContainer= () =>{
     const { id } = useParams();
     const [item,setItem]=useState()
     
-    //okCarga renderiza al tener datos
-    //const [okCarga,setOkCarga]=useState(false)
-
-
     
     //estado para eliminar contador y colocar addtochart
     const [itemAdded,setItemAdded]=useState(false)
     ////
 
-useEffect(() => {
+    useEffect(() => {
         //tomo de firestore
-        console.log(id)//OK
         const Dbase=getFirestore();
         const itemRef= doc(Dbase,"itemList",id)
         getDoc(itemRef).then((snapshot)=>{
         setItem(snapshot)
-//
-    if(snapshot.exists()){
-    const itemNoId= 
-    {
-        id:snapshot.id,
-        ...snapshot.data()
-    }
 
-    setItem(itemNoId)
-    console.log(itemNoId)}
+    if(snapshot.exists()){
+        const itemNoId= 
+        {
+            id:snapshot.id,
+            ...snapshot.data()
+        }
+
+        setItem(itemNoId)
+    }
+    
     else{
         setItem({"name":"ITEM INEXISTENTE"})
         setItemAdded(true)//ITEM NO EXISTE Y HABILITO BOTON A SALIDA
     }
- })
+})
 
 },[id]);
 
-
+//llamada a funcion en cartContext (agregado a cart) si no existe en carrito y la cantidad es mayor a 0 
 const itemOnAddChangeHandler=(counter)=>{
         if (counter>0){
-         //AGREGO A CARRO
         
         setItemAdded(true)
-        //LLAMAR A CART CONTEXT PARA AGREGAR
-        
-        //controlar si existe y si no lo agrego!
+    //si es existente aviso que ya estaba agregado anteriormente    
         !isInCart(item.id) ?
             addItem(item.id,counter,item.name,item.price) 
-            : alert("Item ya Agregado al Carrito anteriormente modificar desde carrito")
-            //agregar control si existe en cart y si existe no permitir agregado
+            : alert("Item ya existente en el carrito ")
+    //agregar control si existe en cart y si existe no permitir agregado
         }else alert("Intertar una cantidad mayor a cero(0)")     
 }
         let  divItemAction
@@ -74,10 +67,9 @@ const itemOnAddChangeHandler=(counter)=>{
         
         return(
             item?
-            //crear ITEMDETAILS
+
             <ItemDetail item={item} action={divItemAction}/>
-            //si no cargando
-            :< div>Cargando...</div>
+            :<div>Cargando...</div>
         )
 
     }

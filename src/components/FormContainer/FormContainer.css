@@ -1,0 +1,11 @@
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+}
+
+label{
+    width: 150px;
+    margin-bottom: 10px;
+}

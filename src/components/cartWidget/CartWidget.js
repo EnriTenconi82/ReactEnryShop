@@ -2,10 +2,8 @@ import React from "react";
 
 import './cartwidget.css'   
 
-//const CartWidget = ({qOfCart}) =>{
 const CartWidget = ({cartQ}) =>{
 
-    //const {calcItemsQty}=useContext(cartContext);
 
     return(
     <>

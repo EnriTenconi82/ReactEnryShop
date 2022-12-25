@@ -55,21 +55,20 @@ const NavBar = () => {
             <Nav.Link>
                 <Link className='menuLink' to='category/Combos'>Combos</Link>
             </Nav.Link>
-            
-          </Nav>
+            </Nav>
         </Navbar.Collapse>
       </Container>
 
-
-      {calcItemsQty()>0 &&
+    
+    { //si hay items en el carrito muestro carrito
+      calcItemsQty()>0 &&
       <>
-      
-      <Link className='menuLink' to='cart'>
+            <Link className='menuLink' to='cart'>
           <CartWidget cartQ={calcItemsQty()} />
       </Link>
       </>
     } 
-       
+    
     </Navbar>
 
 

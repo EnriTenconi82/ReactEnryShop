@@ -30,13 +30,14 @@ const submitHandler = (ev) => {
       addDoc(orderCollection,order).then(snapshot=>{
         setIdM(snapshot.id)
         removeList()
-        nav(`/checkout/${snapshot.id}`)
+        nav(`/brief/${snapshot.id}`)
         }
       )
     }
-    
-    else (alert("Los mail tienen que coincidir"))
-    };
+
+      else (alert("Los mail tienen que coincidir"))
+
+  };
 
 
   const changeHandler = (ev) => {
@@ -46,7 +47,7 @@ const submitHandler = (ev) => {
     
     else {
         setForm({ ...form, [name]: value });
-        setOrder({buyer:form,cart:cart,total:cartTotalValue(),date: serverTimestamp()})
+        setOrder({buyer:form,cart:cart,total:cartTotalValue(),estado:"generada",date: serverTimestamp()})
       }
 
     };

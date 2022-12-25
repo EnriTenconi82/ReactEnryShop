@@ -24,7 +24,6 @@ const ItemCount = ({onAddHandler,item}) => {
   
     return (
     <div>
-
       <p onClick={buttonClickHandlerL}><img src="https://svgsilh.com/svg/1270000.svg" alt='resta'/></p>
       <p>{contador}</p>
       <p onClick={buttonClickHandlerS}><img src="https://svgsilh.com/svg/1721865.svg" alt='sumo'/></p>

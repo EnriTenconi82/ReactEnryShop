@@ -5,6 +5,7 @@ import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import ItemCount from "../../components/ItemCount/ItemCount";
 import './itemDetailsContainer.css'
 import {cartContext} from "../../contexts/cartContext";
+import Charging from "../../components/Charging/Charging";
 
 
 
@@ -26,16 +27,15 @@ const  ItemDetailsContainer= () =>{
         const Dbase=getFirestore();
         const itemRef= doc(Dbase,"itemList",id)
         getDoc(itemRef).then((snapshot)=>{
-        setItem(snapshot)
-
-    if(snapshot.exists()){
-        const itemNoId= 
-        {
-            id:snapshot.id,
-            ...snapshot.data()
-        }
-
-        setItem(itemNoId)
+            
+        if(snapshot.exists()){
+            setItem(snapshot)
+            const itemNoId= 
+            {
+                id:snapshot.id,
+                ...snapshot.data()
+            }
+            setItem(itemNoId)
     }
     
     else{
@@ -69,7 +69,7 @@ const itemOnAddChangeHandler=(counter)=>{
             item?
 
             <ItemDetail item={item} action={divItemAction}/>
-            :<div>Cargando...</div>
+            :<Charging/>
         )
 
     }

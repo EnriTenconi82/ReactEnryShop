@@ -5,7 +5,7 @@ import FormContainer from "../../components/FormContainer/FormContainer"
 import {cartContext} from "../../contexts/cartContext";
 import Card from "../../components/card/Card";
 
-const CartConteiner= ()=>{
+const CartContainer= ()=>{
     //cargo datos del servido
     
    
@@ -19,7 +19,8 @@ const CartConteiner= ()=>{
                     <div>Compra total:{cartTotalValue()}</div>
 
                 <div className="itemList" >
-                        {cart.map((item) => (
+                        {(cart.length>0) &&
+                            (cart.map((item) => (
                             <Card key={item.id}>
                             <div className="item">
                                 <div>ID:{item.id}</div> 
@@ -29,7 +30,7 @@ const CartConteiner= ()=>{
                                 <div className="button" onClick={() => deleteItem(item.id)}>Eliminar</div>
                             </div>                    
                         </Card>        
-                        ))}
+                        )))}
                 <FormContainer/>
                 </div>
 
@@ -37,15 +38,13 @@ const CartConteiner= ()=>{
 
 );
     }
+
     else { 
         return(
-
-        <div className='menu'>
-
-        <Link className="button" to="/">Volver a home</Link>
-        <div>El Carrito se encuentra vacio</div>
-
-        </div>
+                <div className='menu'>
+                    <Link className="button" to="/">Volver a home</Link>
+                    <div>El Carrito se encuentra vacio</div>
+                </div>
         )
 
     }
@@ -53,4 +52,4 @@ const CartConteiner= ()=>{
     }
 
 
-export default CartConteiner
+export default CartContainer

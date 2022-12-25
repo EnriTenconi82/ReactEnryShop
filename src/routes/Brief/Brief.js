@@ -1,14 +1,14 @@
-import React, { useState,useEffect,toDate,}from "react";
-import { getFirestore,doc,getDoc, } from "firebase/firestore";
+import React, { useState,useEffect}from "react";
+import { getFirestore,doc,getDoc} from "firebase/firestore";
 import { useParams } from 'react-router-dom';
+import Charging from "../../components/Charging/Charging";
+import "./Brief.css"
 
-const  Checkout= () =>{ 
-    
-    
+const  Brief= () =>{ 
     const { id } = useParams();
     const [order,setOrder]=useState()
     const [exist,setExist]=useState(true)
-    
+    const [fecha,setFecha]=useState()    
     useEffect(() => {
         //tomo de firestore
         const Dbase=getFirestore();
@@ -16,6 +16,9 @@ const  Checkout= () =>{
         getDoc(orderRef).then((snapshot)=>{
         if(snapshot.exists()){
             setOrder(snapshot.data())
+            snapshot.data().date ? 
+            setFecha(snapshot.data().date.toDate().toString())
+            : setFecha("dia no registrado")
 
         }
         
@@ -32,36 +35,35 @@ const  Checkout= () =>{
         exist ?(
                 order?
                     ( 
-  
                     <>
-                    <div>Hola {order.buyer.name}</div>
-                    <div>Su orden {id}</div>
-                    <div>creada el {order.date.toDate().toString()}</div>
-                    <div>ha sido procesada correctamente </div>
+                    <div>Hola <span>{order.buyer.name}</span></div>
+                    <div>Su orden</div>
+                    <div className="title"> {id}</div>
+                    <span>creada el {fecha}</span>
+                    <div>ha sido <span>{order.estado}</span> correctamente </div>
                     <hr />
-                    <div>DETTALLE DE COMPRA:</div>
+                    <div className="title">DETTALLE DE COMPRA:</div>
                     <hr />
-                
                     {
-                  (order.cart.length>0) &&(
+                    (order.cart.length>0) &&(
                         order.cart.map((item) => (
                                 <div>
-                                    <div>ITEM:{item.name}</div>
+                                    <div className="title">ITEM:{item.name}</div>
                                     <div>CANT:{item.qta}</div>
-                                    <div>PRECIO:{item.price}</div>
+                                    <div>PRECIO:{item.price} c/u.</div>
                                     <hr />
                                 </div>
                                 )))
                     }
                     
-                    <div>TOTAL: {order.total}</div>
+                    <div className="title">TOTAL: {order.total}</div>
 
                     </>     
                     )
                 
                 :
-                
-                <div>Cargando...</div>
+                <Charging/>
+
         )
         
         :
@@ -74,4 +76,4 @@ const  Checkout= () =>{
 
         
 
-export default Checkout
+export default Brief

@@ -2,6 +2,7 @@ import React ,{useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import {collection, getFirestore,getDocs,query,where} from 'firebase/firestore'
 import Item from '../item/Item';
+import Charging from "../../components/Charging/Charging";
 import './itemListContainer.css';
 
 
@@ -22,15 +23,18 @@ useEffect(() => {
         const groupQuery=query(itemsColection,where("group","==",categoryId))
 
         getDocs(groupQuery).then((snapshot)=>{
-        const items= snapshot.docs.map((doc)=>
-                ({
+            if(!snapshot.empty){
+            const items= snapshot.docs.map((doc)=>
+                (
+                    {
                     id:doc.id,
                     ...doc.data()
                 }))
-                
-                setItemList(items)
+                setItemList(items)}
+
+                else {alert("Categoria inexistente")}
             
-            })
+    })
     }
 },[categoryId]);
 
@@ -40,11 +44,11 @@ return (
             <div className='greeting'>{props.greeting} </div>
 
             {(itemList.length===0 && props.greeting===undefined) ? 
-            (   <div>
-                    <div>....cargando...</div>
-                </div>   
+            (   
+                <Charging/>
+
             )
-            :   (props.greeting===undefined)&&           
+            :   (props.greeting===undefined && itemList.length>0)&&           
             
             (
                 <div>

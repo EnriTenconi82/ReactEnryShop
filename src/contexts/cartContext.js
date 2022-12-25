@@ -18,9 +18,9 @@ const CartProvider = ({ children }) => {
   //check si item ya existe en cart
   const isInCart = (id)=>{
     const idExist= cart.filter(item=> item.id===id);
-    if (idExist.length>0 ) return  true 
-        else return false
-  }
+     return (idExist.length>0)
+    
+    }
 
   //agregado item a cart
   const addItem = (id, qta, name ,price)=>{

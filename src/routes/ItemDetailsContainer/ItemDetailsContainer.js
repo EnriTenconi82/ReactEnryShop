@@ -3,6 +3,7 @@ import { useParams,Link } from 'react-router-dom';
 import {doc, getFirestore,getDoc} from 'firebase/firestore'
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import ItemCount from "../../components/ItemCount/ItemCount";
+import Alertmodal from "../../components/modal/Alertmodal";
 import './itemDetailsContainer.css'
 import {cartContext} from "../../contexts/cartContext";
 import Charging from "../../components/Charging/Charging";
@@ -16,8 +17,10 @@ const  ItemDetailsContainer= () =>{
     
     const { id } = useParams();
     const [item,setItem]=useState()
-    
-    
+    //modal
+    const [showModal,setShowModal]=useState(false)    
+    const [modalText,setModalText]=useState("")
+    //
     //estado para eliminar contador y colocar addtochart
     const [itemAdded,setItemAdded]=useState(false)
     ////
@@ -46,17 +49,27 @@ const  ItemDetailsContainer= () =>{
 
 },[id]);
 
+const setModal = (text )=>{
+    setShowModal(true)
+    setModalText (text)
+}
 //llamada a funcion en cartContext (agregado a cart) si no existe en carrito y la cantidad es mayor a 0 
 const itemOnAddChangeHandler=(counter)=>{
-        if (counter>0){
+    if (counter>0){ 
+    
+            setItemAdded(true)
+            //si es existente aviso que ya estaba agregado anteriormente    
+            !isInCart(item.id) ?
+                addItem(item.id,counter,item.name,item.price) 
+                : (
+                    setModal("Item existente en carrito,elimiralo  previamente")
+                )
+            //agregar control si existe en cart y si existe no permitir agregado
+        }
         
-        setItemAdded(true)
-    //si es existente aviso que ya estaba agregado anteriormente    
-        !isInCart(item.id) ?
-            addItem(item.id,counter,item.name,item.price) 
-            : alert("Item ya existente en el carrito ")
-    //agregar control si existe en cart y si existe no permitir agregado
-        }else alert("Intertar una cantidad mayor a cero(0)")     
+        else  setModal("Inserte un valor mayor a cero (0)")
+
+        //<Alertmodal text="Intertar una cantidad mayor a cero(0)"/>     
 }
         let  divItemAction
     
@@ -67,8 +80,10 @@ const itemOnAddChangeHandler=(counter)=>{
         
         return(
             item?
-
+            <>
+            <Alertmodal showModal={showModal} setShowModal={setShowModal}text={modalText}/>
             <ItemDetail item={item} action={divItemAction}/>
+            </>
             :<Charging/>
         )
 

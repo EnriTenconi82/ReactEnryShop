@@ -2,13 +2,13 @@ import React,{useState,useContext} from 'react';
 import { getFirestore, collection, addDoc,serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import {cartContext} from "../../contexts/cartContext";
-import "./FormContainer.css"
+import "./OrderCreationContainer.css"
 
-const FormContainer = () => {
+const OrderCreationContainer = () => {
 
  const nav=useNavigate()
 
-  const { cart,cartTotalValue,removeList} =useContext(cartContext)
+  const { cartList,cartTotalValue,removeList} =useContext(cartContext)
   
   const [order,setOrder]=useState({})
   const [form, setForm] = useState({
@@ -22,8 +22,6 @@ const [idM,setIdM]=useState()
 const submitHandler = (ev) => {
     ev.preventDefault();
     if(form.email===emailCheckValue){
-  
-      console.log(order)
   
       const db = getFirestore();
       const orderCollection= collection(db, 'orders');
@@ -42,12 +40,11 @@ const submitHandler = (ev) => {
 
   const changeHandler = (ev) => {
     const { value, name } = ev.target;
-    console.log(name)
     if (name==="emailCheck") setEmailCheckValue(ev.target.value)
     
     else {
         setForm({ ...form, [name]: value });
-        setOrder({buyer:form,cart:cart,total:cartTotalValue(),estado:"generada",date: serverTimestamp()})
+        setOrder({buyer:form,cart:cartList,total:cartTotalValue(),estado:"generada",date: serverTimestamp()})
       }
 
     };
@@ -111,4 +108,4 @@ const submitHandler = (ev) => {
     );
 };
 
-export default FormContainer;
+export default OrderCreationContainer;

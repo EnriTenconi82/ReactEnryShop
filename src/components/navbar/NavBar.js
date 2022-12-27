@@ -21,41 +21,37 @@ const NavBar = () => {
     <div>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-      <Navbar.Brand>
-          <Link className='menuLink'  to="/">Se picó</Link>
-      </Navbar.Brand>
+        <Navbar.Brand>
+            <Link className='menuLink'  to="/">Se picó</Link>
+        </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto text-start">
-            
-            <NavDropdown title="Picadas" bg="dark" id="basic-nav-dropdown">
-              <NavDropdown.Item>
+            <NavDropdown className='dropdown' title="Picadas" bg="dark" id="basic-nav-dropdown">
+              <div> 
                   <Link className='menuLink' to='category/Picadas4/'>Para 4</Link>
-                </NavDropdown.Item>
-              <NavDropdown.Item> 
+              </div>          
+              <div>
                 <Link className='menuLink'  to='category/Picadas6'>Para 6</Link>
-                
-              </NavDropdown.Item>
+              </div>
             </NavDropdown>
-          
-          
+  
             <NavDropdown title="Bebidas"   id="basic-nav-dropdown">
-                  <NavDropdown.Item>
-                    
-                    <Link className='menuLink' to='category/Cervezas'>Cervezas</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link className='menuLink' to='category/Gaseosas'>Gaseosas</Link>  
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link className='menuLink' to='category/Tragos'>Tragos</Link>
-                  </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link>
-                <Link className='menuLink' to='category/Combos'>Combos</Link>
-            </Nav.Link>
-            </Nav>
+              <div>
+                <Link className='menuLink' to='category/Cervezas'>Cervezas</Link>
+              </div>
+              <div>
+                <Link className='menuLink' to='category/Gaseosas'>Gaseosas</Link>  
+              </div>
+              <div>
+                <Link className='menuLink' to='category/Tragos'>Tragos</Link>
+              </div>
+              </NavDropdown>
+              <div>
+                <Nav.Link as={Link} to='category/Combos'>Combos</Nav.Link>
+              </div>
+          </Nav>
         </Navbar.Collapse>
       </Container>
 
@@ -63,9 +59,9 @@ const NavBar = () => {
     { //si hay items en el carrito muestro carrito
       calcItemsQty()>0 &&
       <>
-            <Link className='menuLink' to='cart'>
-          <CartWidget cartQ={calcItemsQty()} />
-      </Link>
+        <Link className='menuLink' to='cart'>
+        <CartWidget cartQ={calcItemsQty()} />
+        </Link>
       </>
     } 
     

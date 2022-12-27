@@ -10,3 +10,8 @@
     text-decoration: none;
     color: hsl(240, 35%, 56%);
 }
+
+.dropdown div {
+    margin-left: 10px;
+    padding:10px;
+}

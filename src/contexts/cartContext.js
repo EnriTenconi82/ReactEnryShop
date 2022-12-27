@@ -1,51 +1,59 @@
-import React ,{ useState} from 'react';
+import React ,{createContext ,useState} from 'react';
 
 
-const cartContext = React.createContext();
+const cartContext = createContext();
 
 const CartProvider = ({ children }) => {
 
-  const [cart, setCart] = useState([]);
+  const [cartList, setCartList] = useState([]);
 
   //calculo items en cart
   
   const calcItemsQty = () =>{
-
-      const contador= cart.reduce((acc,item)=>{return acc+item.qta},0)
-      return contador
-  }
-  
-  //check si item ya existe en cart
-  const isInCart = (id)=>{
-    const idExist= cart.filter(item=> item.id===id);
-     return (idExist.length>0)
-    
-    }
-
-  //agregado item a cart
-  const addItem = (id, qta, name ,price)=>{
-    setCart([...cart,{id:id,qta:qta,name:name,price:price}]) 
-  }
-
-  //borrado item en cart
-  const deleteItem =(id)=>{
-    const newCart= cart.filter(item=> item.id!==id);
-    setCart(newCart)
-  }
-
-  //vaciado cart
-  const removeList  = ()=>{
-    setCart([])
+    return cartList.reduce((acc,item)=>{return acc+item.qta},0)
   }
 
   //calculo total carrito
   const cartTotalValue = ()=>{
-    const total= cart.reduce((acc,item)=>{return acc+(item.price*item.qta)},0)
-    return total
+    return  cartList.reduce((acc,item)=>{return acc+(item.price*item.qta)},0)
+  }
+  
+  //check si item ya existe en cart
+  const isInCart = (id)=>{
+    
+    return (cartList.some(item=> item.id===id))
   }
 
+/*   //check stock si existe
+  const checkStock= (id)=>{
+  let usedStock=0
+  if (cartList.find(item=>(item.id===id))) usedStock
+  usedStock= cartList.find(item=>(item.id===id))
+    console.log(usedStock)
+}
+  
+ */  
+
+
+
+  //agregado item a cart
+  const addItem = (id, qta, name ,price)=>{
+    setCartList([...cartList,{id:id,qta:qta,name:name,price:price}]) 
+  }
+
+  //borrado item en cart
+  const deleteItem =(id)=>{
+    setCartList( cartList.filter(item=> item.id!==id))
+  }
+
+  //vaciado cart
+  const removeList  = ()=>{
+    setCartList([])
+  }
+
+
   return (
-    <cartContext.Provider value={{ cart, setCart,addItem, deleteItem, removeList,cartTotalValue, isInCart,calcItemsQty}}>
+    <cartContext.Provider value={{ cartList, setCartList,addItem, deleteItem, removeList,cartTotalValue, isInCart,calcItemsQty}}>
       {children}
     </cartContext.Provider>
   );

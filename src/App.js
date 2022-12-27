@@ -7,7 +7,6 @@ import ItemDetailsContainer from './routes/ItemDetailsContainer/ItemDetailsConta
 import CartContainer from './routes/CartContainer/CartContainer';
 import Brief from './routes/Brief/Brief';
 import {CartProvider} from './contexts/cartContext';
-
   const App =() => {
 
     return (
@@ -15,6 +14,7 @@ import {CartProvider} from './contexts/cartContext';
       <BrowserRouter>
       <CartProvider>
         <NavBar/>
+        
         <Routes>
             <Route exact path="/" element={<ItemListContainer greeting="Bienvenidos a Se picó !"/>} />
             <Route exact path="/category/:categoryId" element={<ItemListContainer/>} />

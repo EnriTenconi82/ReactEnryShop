@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "b1b332ccf990afb9862e",
+    "revision": "e5ce59da97d3cb941a84",
     "url": "/ReactEnryShop/static/css/main.f6588105.chunk.css"
   },
   {
-    "revision": "b1b332ccf990afb9862e",
-    "url": "/ReactEnryShop/static/js/main.b1b332cc.chunk.js"
+    "revision": "e5ce59da97d3cb941a84",
+    "url": "/ReactEnryShop/static/js/main.e5ce59da.chunk.js"
   },
   {
     "revision": "c9b44b48ec3ae4b88dff",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/ReactEnryShop/static/js/runtime~main.9c4c0bb6.js"
   },
   {
-    "revision": "77490be1710816b64758622f0bab5bfb",
+    "revision": "90a05effe9db5bfa2a99b1f55e548aa0",
     "url": "/ReactEnryShop/index.html"
   }
 ];

@@ -12,19 +12,17 @@ import {CartProvider} from './contexts/cartContext';
     return (
     <div className="App">
       <BrowserRouter>
-      <CartProvider>
-        <NavBar/>
-        
-        <Routes>
-            <Route exact path="/" element={<ItemListContainer greeting="Bienvenidos a Se picó !"/>} />
-            <Route exact path="/category/:categoryId" element={<ItemListContainer/>} />
-            <Route exact path="/items/:id" element={<ItemDetailsContainer />} /> 
-            <Route exact path="/cart" element={<CartContainer />} /> 
-            <Route exact path="/Brief/:id" element={<Brief/>} /> 
+        <CartProvider>
+          <NavBar/>
+          <Routes>
+              <Route exact path="/" element={<ItemListContainer greeting="Bienvenidos a Se picó !"/>} />
+              <Route exact path="/category/:categoryId" element={<ItemListContainer/>} />
+              <Route exact path="/items/:id" element={<ItemDetailsContainer />} /> 
+              <Route exact path="/cart" element={<CartContainer />} /> 
+              <Route exact path="/brief/:id" element={<Brief/>} /> 
+          </Routes>
 
-        </Routes>
-
-      </CartProvider>
+        </CartProvider>
       </BrowserRouter>
 
 

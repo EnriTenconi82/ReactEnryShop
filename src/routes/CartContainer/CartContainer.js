@@ -7,7 +7,7 @@ import Card from "../../components/card/Card";
 
 const CartContainer= ()=>{
     //cargo datos del servido
-  
+
     const { cartList, deleteItem, removeList,cartTotalValue} =useContext(cartContext)
     if (cartList.length>0)
     {
@@ -40,6 +40,7 @@ const CartContainer= ()=>{
     }
 
     else { 
+    
         return(
                 <div className='menu'>
                     <Link className="button" to="/">Volver a home</Link>

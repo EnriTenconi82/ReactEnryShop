@@ -9,6 +9,7 @@ const  Brief= () =>{
     const [order,setOrder]=useState()
     const [exist,setExist]=useState(true)
     const [fecha,setFecha]=useState()    
+
     useEffect(() => {
         //tomo de firestore
         const Dbase=getFirestore();
@@ -36,25 +37,25 @@ const  Brief= () =>{
                 order?
                     ( 
                     <>
-                    <div>Hola <span>{order.buyer.name}</span></div>
-                    <div>Su orden</div>
-                    <div className="title"> {id}</div>
-                    <span>creada el {fecha}</span>
-                    <div>ha sido <span>{order.estado}</span> correctamente </div>
-                    <hr />
-                    <div className="title">DETTALLE DE COMPRA:</div>
-                    <hr />
-                    {
-                    (order.cart.length>0) &&(
-                        order.cart.map((item) => (
-                                <div>
+                        <div>Hola <span>{order.buyer.name}</span></div>
+                        <div>Su orden</div>
+                        <div className="title"> {id}</div>
+                        <span>creada el {fecha}</span>
+                        <div>ha sido <span>{order.estado}</span> correctamente </div>
+                        <hr />
+                        <div className="title">DETTALLE DE COMPRA:</div>
+                        <hr />
+                        {
+                        (order.cart.length>0) &&(
+                            order.cart.map((item) => (
+                                <div key={item.id}>
                                     <div className="title">ITEM:{item.name}</div>
                                     <div>CANT:{item.qta}</div>
                                     <div>PRECIO:{item.price} c/u.</div>
                                     <hr />
                                 </div>
                                 )))
-                    }
+                        }
                     
                     <div className="title">TOTAL: {order.total}</div>
 

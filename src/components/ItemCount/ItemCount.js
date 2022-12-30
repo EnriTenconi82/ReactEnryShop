@@ -24,7 +24,7 @@ const ItemCount = ({onAddHandler,item}) => {
   
     return (
     <div>
-      <p onClick={buttonClickHandlerL}><img src="https://svgsilh.com/svg/1270000.svg" alt='resta'/></p>
+      <p onClick={buttonClickHandlerL}><img src="https://svgsilh.com/svg/1270000.svg" alt='resta resta'/></p>
       <p>{contador}</p>
       <p onClick={buttonClickHandlerS}><img src="https://svgsilh.com/svg/1721865.svg" alt='sumo'/></p>
       <div className='addtoCart' onClick={addToChart} >Agregar</div>

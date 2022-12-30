@@ -20,25 +20,28 @@ const CartProvider = ({ children }) => {
   
   //check si item ya existe en cart
   const isInCart = (id)=>{
-    
     return (cartList.some(item=> item.id===id))
   }
 
-/*   //check stock si existe
-  const checkStock= (id)=>{
-  let usedStock=0
-  if (cartList.find(item=>(item.id===id))) usedStock
-  usedStock= cartList.find(item=>(item.id===id))
-    console.log(usedStock)
-}
+  //check stock si existe
+  const existingQty= (id)=>{
+    const existingItem = cartList.find(itemToFind=>(itemToFind.id===id))
+    return(existingItem.qta)
+  }
   
- */  
-
-
-
   //agregado item a cart
   const addItem = (id, qta, name ,price)=>{
-    setCartList([...cartList,{id:id,qta:qta,name:name,price:price}]) 
+    const temCart=cartList.filter(item=> item.id!==id)
+    let oldQty=0
+    //const temCart=cartList.filter(item=> item.id!==id)
+    if(isInCart(id))
+      {
+        oldQty=existingQty(id)
+        //elimino  para luegro reponerlo al final
+      }
+    
+    setCartList([...temCart,{id:id,qta:oldQty+qta,name:name,price:price}]) 
+    
   }
 
   //borrado item en cart
@@ -53,7 +56,7 @@ const CartProvider = ({ children }) => {
 
 
   return (
-    <cartContext.Provider value={{ cartList, setCartList,addItem, deleteItem, removeList,cartTotalValue, isInCart,calcItemsQty}}>
+    <cartContext.Provider value={{ cartList, setCartList,addItem, deleteItem, removeList,cartTotalValue, isInCart,calcItemsQty,existingQty}}>
       {children}
     </cartContext.Provider>
   );

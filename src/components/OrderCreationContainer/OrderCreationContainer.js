@@ -6,7 +6,7 @@ import "./OrderCreationContainer.css"
 
 const OrderCreationContainer = () => {
 
- const nav=useNavigate()
+  const nav=useNavigate()
 
   const { cartList,cartTotalValue,removeList} =useContext(cartContext)
   
@@ -16,10 +16,11 @@ const OrderCreationContainer = () => {
     email: '',
     phone: '',
   });
-const [emailCheckValue,setEmailCheckValue]=useState("")
-const [idM,setIdM]=useState()
 
-const submitHandler = (ev) => {
+  const [emailCheckValue,setEmailCheckValue]=useState("")
+  const [idM,setIdM]=useState()
+
+  const submitHandler = (ev) => {
     ev.preventDefault();
     if(form.email===emailCheckValue){
   
@@ -33,7 +34,7 @@ const submitHandler = (ev) => {
       )
     }
 
-      else (alert("Los mail tienen que coincidir"))
+    else (alert("Los mail tienen que coincidir"))
 
   };
 
@@ -50,60 +51,59 @@ const submitHandler = (ev) => {
     };
 
   return (
-    <div >
-  {typeof idM!=="undefined"?
-    (<div>mensaje {idM}</div>):
-    ( <div>
-      <form className="formDiv"  onSubmit={submitHandler}>
-      <div>
-        <label htmlFor="name">Nombre</label>
-        <input
-          name="name"
-          id="name"
-          required="true"
-          value={form.name}
-          onChange={changeHandler}
-        />
+  <div >
+    {typeof idM!=="undefined"?
+      (<div>mensaje {idM}</div>):
+      ( <div>
+            <form className="formDiv"  onSubmit={submitHandler}>
+            <div>
+              <label htmlFor="name">Nombre</label>
+              <input
+                name="name"
+                id="name"
+                required={true}
+                value={form.name}
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required={true}
+                value={form.email}
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="emailCheck">Repita su Email</label>
+                <input
+                  type="email"
+                  name="emailCheck"
+                  id="emailCheck"
+                  required={true}
+                  value={form.emailCheck}
+                  onChange={changeHandler}
+                />
+            </div>
+            <div>
+              <label htmlFor="phone">Telefono</label>
+              <input
+                type="number"
+                name="phone"
+                id=""
+                required={true}
+                value={form.phone}
+                onChange={changeHandler}
+              />
+            </div>
+            <button>Enviar</button>
+          </form>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required="true"
-          value={form.email}
-          onChange={changeHandler}
-        />
-        
-      </div>
-      <div>
-      <label htmlFor="emailCheck">Repita su Email</label>
-        <input
-          type="email"
-          name="emailCheck"
-          id="emailCheck"
-          required="true"
-          value={form.emailCheck}
-          onChange={changeHandler}
-        />
-      </div>
-      <div>
-        <label htmlFor="phone">Telefono</label>
-        <input
-          type="number"
-          name="phone"
-          id=""
-          required="true"
-          value={form.phone}
-          onChange={changeHandler}
-        />
-      </div>
-      <button>Enviar</button>
-    </form>
-  </div>
-)
-  }
+    )
+    }
   </div>
     );
 };

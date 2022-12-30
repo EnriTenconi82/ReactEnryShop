@@ -29,29 +29,16 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto text-start">
             <NavDropdown className='dropdown' title="Picadas" bg="dark" id="basic-nav-dropdown">
-              <div> 
-                  <Link className='menuLink' to='category/Picadas4/'>Para 4</Link>
-              </div>          
-              <div>
-                <Link className='menuLink'  to='category/Picadas6'>Para 6</Link>
-              </div>
+              <NavDropdown.Item as={Link} to='category/Picadas4/'>Para 4</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='category/Picadas6'>Para 6</NavDropdown.Item>
             </NavDropdown>
-  
             <NavDropdown title="Bebidas"   id="basic-nav-dropdown">
-              <div>
-                <Link className='menuLink' to='category/Cervezas'>Cervezas</Link>
-              </div>
-              <div>
-                <Link className='menuLink' to='category/Gaseosas'>Gaseosas</Link>  
-              </div>
-              <div>
-                <Link className='menuLink' to='category/Tragos'>Tragos</Link>
-              </div>
-              </NavDropdown>
-              <div>
+              <NavDropdown.Item as={Link} to='category/Cervezas'>Cervezas</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='category/Gaseosas'>Gaseosas</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='category/Tragos'>Tragos</NavDropdown.Item>
+            </NavDropdown>
                 <Nav.Link as={Link} to='category/Combos'>Combos</Nav.Link>
-              </div>
-          </Nav>
+            </Nav>
         </Navbar.Collapse>
       </Container>
 

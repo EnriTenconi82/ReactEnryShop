@@ -9,8 +9,6 @@ const Alertmodal=({showModal,setShowModal,text})=>{
   }
   
   return (
-    <>
-    
       <Modal show={showModal}>
         <Modal.Header closeButton onClick={modalHandler}>
           <Modal.Title>Atencíon</Modal.Title>
@@ -23,9 +21,7 @@ const Alertmodal=({showModal,setShowModal,text})=>{
             Close
           </Button>
         </Modal.Footer>
-      
       </Modal>
-    </>
   )
 }
 export default Alertmodal

@@ -9,7 +9,7 @@ const CartWidget = ({cartQ}) =>{
     <>
     <div className="cartWidget">
             <div>
-                <img src="https://www.svgrepo.com/show/228775/online-store-shopping-cart.svg" alt="cart"/>
+                <img src="https://www.svgrepo.com/show/228775/online-store-shopping-cart.svg" alt="cart widget"/>
             </div> 
             
             <p> ({cartQ}) </p>

@@ -13,7 +13,7 @@ import Charging from "../../components/Charging/Charging";
 //const  ItemDetailsContainer= ({chartQuantity ,chartQHandler, chart,chartHandler}) =>{ 
 const  ItemDetailsContainer= () =>{ 
     
-    const {addItem,isInCart} =useContext(cartContext)
+    const {addItem,isInCart,existingQty} =useContext(cartContext)
     
     const { id } = useParams();
     const [item,setItem]=useState()
@@ -32,14 +32,21 @@ const  ItemDetailsContainer= () =>{
         getDoc(itemRef).then((snapshot)=>{
             
         if(snapshot.exists()){
-            setItem(snapshot)
-            const itemNoId= 
+            let itemWithId= 
             {
                 id:snapshot.id,
                 ...snapshot.data()
             }
-            setItem(itemNoId)
-    }
+            if (isInCart(itemWithId.id) )
+                {   setModal("Item ya existente en carrito,se agregará la cantidad seleccionada")
+                    itemWithId={...itemWithId,stock:itemWithId.stock-existingQty(itemWithId.id)}
+                }
+            setItem(itemWithId)
+            if (itemWithId.stock===0){
+                setItemAdded(true)//ITEM NO EXISTE Y HABILITO BOTON A SALIDA
+                setModal("Producto sin stock")
+            }
+        }
     
     else{
         setItem({"name":"ITEM INEXISTENTE"})
@@ -59,30 +66,23 @@ const itemOnAddChangeHandler=(counter)=>{
     
             setItemAdded(true)
             //si es existente aviso que ya estaba agregado anteriormente    
-            !isInCart(item.id) ?
-                addItem(item.id,counter,item.name,item.price) 
-                : (
-                    setModal("Item existente en carrito,elimiralo  previamente")
-                )
+            addItem(item.id,counter,item.name,item.price) 
             //agregar control si existe en cart y si existe no permitir agregado
         }
-        
         else  setModal("Inserte un valor mayor a cero (0)")
-
-        //<Alertmodal text="Intertar una cantidad mayor a cero(0)"/>     
 }
-        let  divItemAction
+    let  divItemAction
     
-        itemAdded? 
-            divItemAction=<Link  className='endBuy' to='/cart'>Finalizar Compra</Link>
-            :divItemAction=<ItemCount onAddHandler={itemOnAddChangeHandler} item={item}/>
-
+    itemAdded? 
+        divItemAction=<Link  className='endBuy' to='/cart'>Finalizar Compra</Link>
+        :divItemAction=<ItemCount onAddHandler={itemOnAddChangeHandler} item={item}/>
+        
         
         return(
             item?
             <>
-            <Alertmodal showModal={showModal} setShowModal={setShowModal}text={modalText}/>
-            <ItemDetail item={item} action={divItemAction}/>
+                <Alertmodal showModal={showModal} setShowModal={setShowModal}text={modalText}/>
+                <ItemDetail item={item} action={divItemAction}/>
             </>
             :<Charging/>
         )

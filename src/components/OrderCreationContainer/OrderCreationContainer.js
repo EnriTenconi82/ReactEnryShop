@@ -29,7 +29,7 @@ const OrderCreationContainer = () => {
       addDoc(orderCollection,order).then(snapshot=>{
         setIdM(snapshot.id)
         removeList()
-        nav(`/brief/${snapshot.id}`)
+        nav(`/Checkout/${snapshot.id}`)
         }
       )
     }

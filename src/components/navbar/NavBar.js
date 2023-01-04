@@ -46,7 +46,7 @@ const NavBar = () => {
     { //si hay items en el carrito muestro carrito
       calcItemsQty()>0 &&
       <>
-        <Link className='menuLink' to='cart'>
+        <Link className='menuLink' to='Brief'>
         <CartWidget cartQ={calcItemsQty()} />
         </Link>
       </>

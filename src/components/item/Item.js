@@ -1,8 +1,8 @@
 import React from "react";
 
 import './item.css'
-import Card from "../../components/card/Card";
-import Avatar from "../../components/Avatar/Avatar";
+import Card from "../card/Card";
+import Avatar from "../Avatar/Avatar";
 import { Link } from 'react-router-dom';
 
 const Item= ({item}) =>{

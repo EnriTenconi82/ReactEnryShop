@@ -2,15 +2,13 @@ import React, { useState,useEffect, useContext } from "react";
 import { useParams,Link } from 'react-router-dom';
 import {doc, getFirestore,getDoc} from 'firebase/firestore'
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
-import ItemCount from "../../components/ItemCount/ItemCount";
+import ItemQuantitySelector from "../../components/ItemQuantitySelector/ItemQuantitySelector";
 import Alertmodal from "../../components/modal/Alertmodal";
 import './itemDetailsContainer.css'
 import {cartContext} from "../../contexts/cartContext";
 import Charging from "../../components/Charging/Charging";
 
 
-
-//const  ItemDetailsContainer= ({chartQuantity ,chartQHandler, chart,chartHandler}) =>{ 
 const  ItemDetailsContainer= () =>{ 
     
     const {addItem,isInCart,existingQty} =useContext(cartContext)
@@ -43,14 +41,14 @@ const  ItemDetailsContainer= () =>{
                 }
             setItem(itemWithId)
             if (itemWithId.stock===0){
-                setItemAdded(true)//ITEM NO EXISTE Y HABILITO BOTON A SALIDA
+                setItemAdded(true)//ITEM NO TIENE MAS STOCK -> HABILITO BOTON A SALIDA
                 setModal("Producto sin stock")
             }
         }
     
     else{
         setItem({"name":"ITEM INEXISTENTE"})
-        setItemAdded(true)//ITEM NO EXISTE Y HABILITO BOTON A SALIDA
+        setItemAdded(true)//ITEM NO EXISTE -> HABILITO BOTON A SALIDA
     }
 })
 
@@ -73,9 +71,10 @@ const itemOnAddChangeHandler=(counter)=>{
 }
     let  divItemAction
     
+    // defino accion a visualizar en item detail (Finalizar compra u Agregar)
     itemAdded? 
-        divItemAction=<Link  className='endBuy' to='/cart'>Finalizar Compra</Link>
-        :divItemAction=<ItemCount onAddHandler={itemOnAddChangeHandler} item={item}/>
+        divItemAction=<Link  className='endBuy' to='/Brief'>Finalizar Compra</Link>
+        :divItemAction=<ItemQuantitySelector AddItemButton={itemOnAddChangeHandler} item={item}/>
         
         
         return(

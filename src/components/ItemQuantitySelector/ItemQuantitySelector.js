@@ -1,9 +1,9 @@
 
 import React, { useState} from 'react';
-import "./itemCount.css"
+import "./ItemQuantitySelector.css"
 
 
-const ItemCount = ({onAddHandler,item}) => {
+const ItemQuantitySelector = ({AddItemButton,item}) => {
 
   const [contador, setContador] = useState(0);
   
@@ -18,7 +18,7 @@ const ItemCount = ({onAddHandler,item}) => {
   
   //llamo codigo de ItemDetailsCont
   const addToChart=()=>{
-      onAddHandler(contador)
+    AddItemButton(contador)
     }
 
   
@@ -33,4 +33,4 @@ const ItemCount = ({onAddHandler,item}) => {
   );
 };
 
-export default ItemCount;
+export default ItemQuantitySelector;

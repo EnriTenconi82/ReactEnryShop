@@ -1,80 +1,56 @@
-import React, { useState,useEffect}from "react";
-import { getFirestore,doc,getDoc} from "firebase/firestore";
-import { useParams } from 'react-router-dom';
-import Charging from "../../components/Charging/Charging";
-import "./Brief.css"
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import "./Brief.css";
+import OrderCreationContainer from "../../components/OrderCreationContainer/OrderCreationContainer"
+import {cartContext} from "../../contexts/cartContext";
+import Card from "../../components/card/Card";
 
-const  Brief= () =>{ 
-    const { id } = useParams();
-    const [order,setOrder]=useState()
-    const [exist,setExist]=useState(true)
-    const [fecha,setFecha]=useState()    
+const Brief= ()=>{
+    //cargo datos del servidor
 
-    useEffect(() => {
-        //tomo de firestore
-        const Dbase=getFirestore();
-        const orderRef= doc(Dbase,"orders",id)
-        getDoc(orderRef).then((snapshot)=>{
-        if(snapshot.exists()){
-            setOrder(snapshot.data())
-            snapshot.data().date ? 
-            setFecha(snapshot.data().date.toDate().toString())
-            : setFecha("dia no registrado")
-
-        }
-        
-        else{
-            setExist(false)
-    } 
-
-    })
-
-},[id]);
-
-        
-    return(
-        exist ?(
-                order?
-                    ( 
-                    <>
-                        <div>Hola <span>{order.buyer.name}</span></div>
-                        <div>Su orden</div>
-                        <div className="title"> {id}</div>
-                        <span>creada el {fecha}</span>
-                        <div>ha sido <span>{order.estado}</span> correctamente </div>
-                        <hr />
-                        <div className="title">DETTALLE DE COMPRA:</div>
-                        <hr />
-                        {
-                        (order.cart.length>0) &&(
-                            order.cart.map((item) => (
-                                <div key={item.id}>
-                                    <div className="title">ITEM:{item.name}</div>
-                                    <div>CANT:{item.qta}</div>
-                                    <div>PRECIO:{item.price} c/u.</div>
-                                    <hr />
-                                </div>
-                                )))
-                        }
-                    
-                    <div className="title">TOTAL: {order.total}</div>
-
-                    </>     
-                    )
+    const { cartList, deleteItem, removeList,cartTotalValue} =useContext(cartContext)
+    if (cartList.length>0)
+    {
+        return(
+            <div>
                 
-                :
-                <Charging/>
+                <div className="button" onClick={removeList}>Vaciar Carrito</div>
+                
+                <div>Compra total:{cartTotalValue()}</div>
 
-        )
-        
-        :
-            
-        <div>La orden {id} no existe </div>
-        
-    )          
+                <div className="itemList" >
+                        {(cartList.length>0) &&
+                            (cartList.map((item) => (
+                            <Card key={item.id}>
+                            <div className="item">
+                                <div>ID:{item.id}</div> 
+                                <div>Nombre:{item.name}</div> 
+                                <div>Precio:{item.price}</div> 
+                                <div>Cantidad:{item.qta}</div> 
+                                <div className="button" onClick={() => deleteItem(item.id)}>Eliminar</div>
+                            </div>                    
+                        </Card>        
+                        )))}
+                <OrderCreationContainer/>
+                </div>
+
+        </div>
+
+);
     }
-    
 
-        
+    else { 
+    
+        return(
+                <div className='menu'>
+                    <Link className="button" to="/">Volver a home</Link>
+                    <div>El Carrito se encuentra vacio</div>
+                </div>
+        )
+
+    }
+
+    }
+
 
 export default Brief

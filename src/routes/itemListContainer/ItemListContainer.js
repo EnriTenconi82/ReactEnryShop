@@ -1,7 +1,7 @@
 import React ,{useEffect, useContext,useState} from 'react';
 import { useParams } from 'react-router-dom';
 import {collection, getFirestore,getDocs,query,where} from 'firebase/firestore'
-import Item from '../item/Item';
+import Item from '../../components/item/Item';
 import Alertmodal from '../../components/modal/Alertmodal';
 import Charging from "../../components/Charging/Charging";
 import './itemListContainer.css';

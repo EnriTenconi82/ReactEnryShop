@@ -1,70 +1,199 @@
-# Getting Started with Create React App
+# Documentación
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+E-commerce creado con React-App ,se agradadece a [CoderHouse](https://www.coderhouse.com/) al profesor Felix Blanco y a los tutores por la realización de este proyecto
 
-## Available Scripts
+ - [gh-pages](https://enritenconi82.github.io/ReactEnryShop/)
+ - [Repositorio](https://github.com/EnriTenconi82/ReactEnryShop)
 
-In the project directory, you can run:
+## FrameWork/Librerias extras
 
-### `npm start`
+- Se utilizó Bootstrap para la creación de barra de navegacíon con butón hamburguesa y modal
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Se utilizó React-router-dom para la navegacion
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Database
 
-### `npm test`
+- Se utilizo database firebase
+en el DB se encuentras 2 collecciones:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### itemList conteniente los items usados en la app 
+        cada item tiene un ID univoco creado por firebase y los campos
 
-### `npm run build`
+- description (string)
+- group (number)
+- image (url)
+- name (string)
+- price (number)
+- stock (number)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### orders conteniente las ordenes de compras creadas
+        cada order contiene un ID univoco credo por firebase y los campos
+#### buyer     
+ - {  
+          email (string)  
+          name (string)  
+          phone (number)  
+         }(*objeto contenientes datos del comprado*)
+    
+#### cart 
+- {[    
+           id  (string)  
+           name (string)  
+           price (number)  
+           qta (number)    
+          }] (array de objeto contenientes elementos comprado)
+        
+-  date (date)   
+- estado (string) (*valor por defecto:generada*)   
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## App
+        App contiente componentes incluido en la routes de react-router-dom, al estar fijo el NavBar no fue incluido en las rutas
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  <div className="App">
+      <BrowserRouter>
+        <CartProvider>
+          <NavBar/>
+          <Routes>
+              <Route exact path="/" element={<ItemListContainer greeting="Bienvenidos a Se picó !"/>} />
+              <Route exact path="/category/:categoryId" element={<ItemListContainer/>} />
+              <Route exact path="/items/:id" element={<ItemDetailsContainer />} /> 
+              <Route exact path="/Brief" element={<Brief />} /> 
+              <Route exact path="/checkout/:id" element={<Checkout/>} /> 
+          </Routes>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        </CartProvider>
+      </BrowserRouter>
+```
+## Context
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### CartContext / CartProvider
+        Contexto conteniente los elementos correspondientes al carro de compra del usuario ; en su interior se encuentran y proveen:
 
-## Learn More
+ - cartList
+        Array conteniente los Items agregados al carrito y su  correspondientes cantidad
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - setCartList
+        Funcion de Seteo de cartList
+    
+  - addItem (id, qta, name ,price)
+        Función que suma o corrige(si ya existe) item y su cantidad a CartList
+        (ver funcion IsInCart)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - deleteItem(id)
+        Función que elimina item de CartList
+    
+  - removeList
+            Función que elimina todos items de CartList
+    
+  - cartTotalValue
+            Función que devuelve valor en dinero de  CartList
+    
+  - isInCart(id)
+        Función que devuelte un item si el mismo existe en CartList
 
-### Code Splitting
+  - calcItemsQty
+           Funcion que devuelte un item si el mismo existe en CartList
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  - existingQty(id)
+            Funcion que devuelte el valor de  la cantidad presente en cartList de un determinado item 
 
-### Analyzing the Bundle Size
+## Routes (componentes)
+        Componentes navegables desde router-react-dom
+### Brief= ()
+        Componente presentacional
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Muestra elementos presente en el carrito  al componente _OrderCreationContainer_, y acciones sobre elementos comprados  
+        _{ cartList, deleteItem, removeList,cartTotalValue}_  
+        desde el contexto(_cartContext_)
 
-### Making a Progressive Web App
+### Checkout=()
+- Componente que visualiza un order con un derminado id (proveniente desde el url)
+        usando hook de react-router-dom
+        _const { id } = useParams();_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+###  ItemListContainer = (props)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+        Componente con logica de negocio ,
 
-### Deployment
+- Al tener como input el
+      _props.greeting_  muestra el mensaje de bienvenida al sitio.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Al no tener props de input muestra los elementos de la categoria correspondiente a lo recibido por el url usando el hook de react-router-dom  
+_const { categoryId } = useParam();_
+      
 
-### `npm run build` fails to minify
+###  ItemDetailsContainer= ()
+        Componente conteniente logica de negocio.
+- Muestra elemento con un       determinado id usando hook de react-router-dom  
+_const { id } = useParams();_  
+- Efectua operaciones con sobre el carrito a traves    del contexto (cartContext) 
+_{addItem,isInCart,existingQty}_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Components
+
+### Avatar = ({ src, alt = 'item image' }) 
+    Componente Presentacional
+- Configuración de imagen a mostar
+  
+
+
+### Card = ({ children })
+       Componente Presentacional
+- Coloca elemento a su interior  en una Card
+
+
+### CartWidget = ({cartQ})
+        Componente Presentacional
+- Muestra imagen e cantidad de elementos en carrito (cartQ - cartContext)
+- Es llamado en navBar y visualizable si hay elemento en el carrito
+
+### Charging = () 
+        Componente Presentacional
+- Se visualiza mientras se esperan datos desde el Db 
+### ItemDetail= ({item, action})
+        Componente Presentacional
+- Muestra detalles de elemento (_item_ ) y
+        de un acccion (action)
+        Action (desde _ItemDetailsContainer_)  
+
+-_ItemQuantitySelector_  
+-Botón Agregar/Final de compra
+
+### Item= ({item})
+        Componente Presentacional
+- Muestra elemento (item)
+- Al hacer click sobre el se accede a  
+_ItemDetailsContainer_
+
+### ItemQuantitySelector = ({AddItemButton,item})
+        Componente Presentacional
+
+-  Visualiza controles para sumar/restar  cantidades de (item)a comprar y devuelve la cantidad a  
+_ItemDetails_ (_AddItemButton_)
+
+### Alertmodal=({showModal,setShowModal,text})
+        Compomente Presentacional 
+- Muestra un texto {text} de advertencia en determinados casos  y lo cierra  
+{_showModal,setModalShow_}
+
+### NavBar = ()
+    Componente Presentacional
+
+- Muestra o no a cartWidget segun la cantidad de items en carrito
+    _calcItemsQty_ proveniente del contexto (_cartContext_)  
+    (_calcItemsQty===0_ no se mostrará Widget) 
+  
+### OrderCreationContainer = () 
+    Componente de Logica de App
+- Crea una orden conteniende los elementos comprados
+    {_cartList,cartTotalValue,removeList_} 
+    tomado del contexto (_cartContext_)
+    contenido en componente _Brief_
+
